@@ -1,0 +1,64 @@
+* これは何？
+J-Quants APIの非公式ラッパーです。
+
+* 使い方
+下記は
+1. メールアドレスとパスワードを使ってリフレッシュトークンを取得
+2. リフレッシュトークンを使ってIDトークンを取得
+3. IDトークンを使って市場カレンダーを取得
+   
+という流れを示しています。
+
+#+begin_src rust
+let user_id = "your_user_id".to_string();
+let user_password = "your_password".to_string();
+
+let mut client = HttpClient::new();
+
+// Create Refresh Token
+let login_request = token_auth_user::AuthUserRequest {
+    mailaddress: user_id,
+    password: user_password,
+};
+let login_response: Result<token_auth_user::AuthUserResponse, _> =
+    client.send_request(login_request).await;
+let refresh_token = login_response.unwrap().refreshToken;
+
+// Create ID Token
+let id_token_request = token_auth_refresh::AuthRefreshRequest {
+    refreshtoken: refresh_token,
+};
+let id_token_response: Result<token_auth_refresh::AuthRefreshResponse, _> =
+    client.send_request(id_token_request).await;
+client.set_id_token(id_token_response.unwrap().idToken);
+
+// Get market calendar
+let query = markets_trading_calendar::TradingCalendarRequest::builder().holidaydivision("1".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
+let res = client.send_request(query).await;
+println!("{:?}", res);
+
+
+#+end_src
+
+* 対応済みAPI
+  - [X] /token/auth_user
+  - [X] /token/auth_refresh
+  - [X] /listed/info
+  - [X] /prices/daily_quotes
+  - [ ] /prices/prices_am
+  - [X] /markets/trades_spec
+  - [X] /markets/weekly_margin_interest
+  - [X] /markets/short_selling
+  - [ ] /markets/breakdown
+  - [X] /markets/trading_calendar
+  - [X] /indices
+  - [X] /indices/topix
+  - [X] /fins/statements
+  - [ ] /fins/fs_details
+  - [ ] /fins/dividend
+  - [X] /fins/announcement
+  - [X] /option/index_option
+
+
+
+
