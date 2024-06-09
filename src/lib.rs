@@ -148,65 +148,61 @@ mod tests {
 
         client.set_id_token(refresh_response.unwrap().idToken);
 
-        // 上場銘柄一覧
+        // // 上場銘柄一覧
         // let stock_list_request = api::listed_info::ListedInfoRequest::builder().code("13010".to_string()).build();
         // let stock_list_response: Result<api::listed_info::ListedInfoResponse, _> =
         // client.send_request(stock_list_request).await;
         // println!("{:?}", stock_list_response);
 
-        // 日足データ取得
+        // // 日足データ取得
         // let daily_query = api::prices_daily_quotes::DailyQuotesRequest::builder().code("13010".to_string()).date("20240605".to_string()).build();
         // let res = client.send_request(daily_query).await;
         // println!("{:?}", res);
 
-        // 投資部門別情報
+        // // 投資部門別情報
         // let query = api::markets_investment_sector::InvestmentSectorRequest::builder().code("13010".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 信用取引週末残高
+        // // 信用取引週末残高
         // let query = api::markets_weekly_margin_interest::WeeklyMarginInterestRequest::builder().code("13010".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 業種別空売り残高
+        // // 業種別空売り残高
         // let query = api::markets_short_selling::ShortSellingRequest::builder().sector33code("0050".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 取引カレンダー
+        // // 取引カレンダー
         // let query = api::markets_trading_calendar::TradingCalendarRequest::builder().holidaydivision("1".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 指数四本足
+        // // 指数四本足
         // let query = api::indices::IndicesRequest::builder().code("13010".to_string()).from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // // TOPIX
+        // // // TOPIX
         // let query = api::indices_topix::TopixRequest::builder().from("20240324".to_string()).to("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 財務情報
+        // // 財務情報
         // let query = api::fins_statements::StatementsRequest::builder().code("86970".to_string()).date("20230130".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // 決算発表日
+        // // 決算発表日
         // let query = api::fins_announcement::AnnouncementRequest::builder().build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // オプションデータ
+        // // オプションデータ
         // let query = api::option_index_option::IndexOptionRequest::builder().date("20240601".to_string()).build();
         // let res = client.send_request(query).await;
-        // println!("{:?}", res)
+        // println!("{:?}", res);
 
-        // assert!(login_response.is_ok());
-        // if let Ok(response) = login_response {
-        //     assert_eq!(response.refreshToken, "mock_refresh_token");
-        // }
     }
 }
