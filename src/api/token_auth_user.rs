@@ -4,14 +4,14 @@ use crate::ApiMethod;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
-#[derive(TypedBuilder, Serialize)]
+#[derive(TypedBuilder, Serialize, Clone, Default)]
 pub struct AuthUserRequest {
     pub mailaddress: String,
     pub password: String,
 }
 
 #[allow(warnings)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Default, Serialize)]
 pub struct AuthUserResponse {
     pub refreshToken: String,
 }

@@ -6,28 +6,28 @@ use typed_builder::TypedBuilder;
 
 #[derive(TypedBuilder)]
 #[builder(field_defaults(default, setter(strip_option)))]
-#[derive(Serialize)]
+#[derive(Serialize, Default, Clone)]
 pub struct AnnouncementRequest {
     pub pagination_key: Option<String>,
 }
 
 #[allow(warnings)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Serialize, Default)]
 pub struct AnnouncementResponse {
     pub announcement: Vec<Announcement>,
     pub pagination_key: Option<String>,
 }
 
 #[allow(warnings)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Serialize, Default)]
 pub struct Announcement {
-    pub Date: String,
     pub Code: String,
     pub CompanyName: String,
-    pub FiscalYear: String,
-    pub SectorName: String,
+    pub Date: String,
     pub FiscalQuarter: String,
+    pub FiscalYear: String,
     pub Section: String,
+    pub SectorName: String,
 }
 
 impl ApiEndpoint for AnnouncementRequest {

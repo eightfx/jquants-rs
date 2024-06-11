@@ -4,7 +4,7 @@ use crate::ApiMethod;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
-#[derive(Serialize, TypedBuilder)]
+#[derive(Serialize, TypedBuilder, Default, Clone)]
 #[builder(field_defaults(default, setter(strip_option)))]
 pub struct ListedInfoRequest {
     pub code: Option<String>,
@@ -12,24 +12,24 @@ pub struct ListedInfoRequest {
 }
 
 #[allow(warnings)]
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
 pub struct StockInfo {
-    pub Date: String,
     pub Code: String,
     pub CompanyName: String,
     pub CompanyNameEnglish: String,
+    pub Date: String,
+    pub MarginCode: String,
+    pub MarginCodeName: String,
+    pub MarketCode: String,
+    pub MarketCodeName: String,
+    pub ScaleCategory: String,
     pub Sector17Code: String,
     pub Sector17CodeName: String,
     pub Sector33Code: String,
     pub Sector33CodeName: String,
-    pub ScaleCategory: String,
-    pub MarketCode: String,
-    pub MarketCodeName: String,
-    pub MarginCode: String,
-    pub MarginCodeName: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone, Default)]
 pub struct ListedInfoResponse {
     pub info: Vec<StockInfo>,
 }

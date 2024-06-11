@@ -4,9 +4,8 @@ use crate::ApiMethod;
 use serde::{Deserialize, Serialize};
 use typed_builder::TypedBuilder;
 
-#[derive(TypedBuilder)]
+#[derive(Serialize, TypedBuilder, Default, Clone)]
 #[builder(field_defaults(default, setter(strip_option)))]
-#[derive(Serialize)]
 pub struct TradingCalendarRequest {
     pub holidaydivision: Option<String>,
     pub from: Option<String>,
@@ -14,13 +13,13 @@ pub struct TradingCalendarRequest {
 }
 
 #[allow(warnings)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Serialize, Default)]
 pub struct TradingCalendarResponse {
     pub trading_calendar: Vec<TradingCalendar>,
 }
 
 #[allow(warnings)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone, Serialize, Default)]
 pub struct TradingCalendar {
     pub Date: String,
     pub HolidayDivision: String,
