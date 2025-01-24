@@ -83,7 +83,12 @@ pub struct TradeSpec {
 
 impl ApiEndpoint for TradesSpecRequest {
     type Response = TradesSpecResponse;
+    type ResData = TradeSpec;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/markets/trades_spec";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.trades_spec
+	}
 }

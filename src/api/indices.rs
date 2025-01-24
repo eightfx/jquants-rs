@@ -35,7 +35,12 @@ pub struct IndexData {
 
 impl ApiEndpoint for IndicesRequest {
     type Response = IndicesResponse;
+    type ResData = IndexData;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/indices";
+    
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.indices
+	}
 }

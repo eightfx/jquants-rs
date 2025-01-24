@@ -37,7 +37,12 @@ pub struct WeeklyMarginInterest {
 
 impl ApiEndpoint for WeeklyMarginInterestRequest {
     type Response = WeeklyMarginInterestResponse;
+    type ResData = WeeklyMarginInterest;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/markets/weekly_margin_interest";
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.weekly_margin_interest
+	}
+
 }

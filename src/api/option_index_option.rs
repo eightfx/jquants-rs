@@ -56,7 +56,12 @@ pub struct IndexOption {
 
 impl ApiEndpoint for IndexOptionRequest {
     type Response = IndexOptionResponse;
+    type ResData = IndexOption;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/option/index_option";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.index_option
+	}
 }

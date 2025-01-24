@@ -33,7 +33,12 @@ pub struct ShortSelling {
 
 impl ApiEndpoint for ShortSellingRequest {
     type Response = ShortSellingResponse;
+    type ResData = ShortSelling;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/markets/short_selling";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.short_selling
+	}
 }

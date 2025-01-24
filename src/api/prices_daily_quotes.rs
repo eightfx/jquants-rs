@@ -71,7 +71,12 @@ pub struct DailyQuote {
 
 impl ApiEndpoint for DailyQuotesRequest {
     type Response = DailyQuotesResponse;
+    type ResData = DailyQuote;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/prices/daily_quotes";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.daily_quotes
+	}
 }

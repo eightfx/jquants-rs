@@ -27,7 +27,12 @@ pub struct TradingCalendar {
 
 impl ApiEndpoint for TradingCalendarRequest {
     type Response = TradingCalendarResponse;
+    type ResData = TradingCalendar;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/markets/trading_calendar";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.trading_calendar
+	}
 }

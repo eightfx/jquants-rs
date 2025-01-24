@@ -18,7 +18,13 @@ pub struct AuthUserResponse {
 
 impl ApiEndpoint for AuthUserRequest {
     type Response = AuthUserResponse;
+    type ResData = ();
     const METHOD: ApiMethod = ApiMethod::POST;
     const INCLUDE: ApiInclude = ApiInclude::BODY;
     const ENDPOINT: &'static str = "/v1/token/auth_user";
+
+
+    fn extract(_response: Self::Response) -> Vec<Self::ResData> {
+	Vec::new()
+	}
 }

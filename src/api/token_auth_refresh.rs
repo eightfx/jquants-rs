@@ -17,7 +17,12 @@ pub struct AuthRefreshResponse {
 
 impl ApiEndpoint for AuthRefreshRequest {
     type Response = AuthRefreshResponse;
+    type ResData = ();
     const METHOD: ApiMethod = ApiMethod::POST;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/token/auth_refresh";
+
+    fn extract(_response: Self::Response) -> Vec<Self::ResData> {
+	Vec::new()
+	}
 }

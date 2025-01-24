@@ -32,7 +32,12 @@ pub struct Announcement {
 
 impl ApiEndpoint for AnnouncementRequest {
     type Response = AnnouncementResponse;
+    type ResData = Announcement;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/fins/announcement";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.announcement
+	}
 }

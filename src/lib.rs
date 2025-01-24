@@ -16,6 +16,7 @@ pub mod prelude {
 // APIエンドポイントのトレイト定義
 pub trait ApiEndpoint: Serialize {
     type Response: DeserializeOwned;
+    type ResData: DeserializeOwned;
     const METHOD: ApiMethod;
     const INCLUDE: ApiInclude;
     const ENDPOINT: &'static str;
@@ -25,6 +26,8 @@ pub trait ApiEndpoint: Serialize {
     fn parse_response(response: &str) -> Result<Self::Response, String> {
         serde_json::from_str(response).map_err(|e| e.to_string())
     }
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData>;
 }
 
 #[derive(PartialEq)]

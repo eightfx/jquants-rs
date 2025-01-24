@@ -36,7 +36,12 @@ pub struct ListedInfoResponse {
 
 impl ApiEndpoint for ListedInfoRequest {
     type Response = ListedInfoResponse;
+    type ResData = StockInfo;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/listed/info";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.info
+	}
 }

@@ -133,7 +133,12 @@ pub struct Statement {
 
 impl ApiEndpoint for StatementsRequest {
     type Response = StatementsResponse;
+    type ResData = Statement;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/fins/statements";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.statements
+	}
 }

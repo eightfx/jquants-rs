@@ -32,7 +32,12 @@ pub struct TopixData {
 
 impl ApiEndpoint for TopixRequest {
     type Response = TopixResponse;
+    type ResData = TopixData;
     const METHOD: ApiMethod = ApiMethod::GET;
     const INCLUDE: ApiInclude = ApiInclude::QUERY;
     const ENDPOINT: &'static str = "/v1/indices/topix";
+
+    fn extract(response: Self::Response) -> Vec<Self::ResData> {
+		response.topix
+	}
 }
