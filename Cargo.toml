@@ -7,7 +7,6 @@ description = "Unofficial wrapper for jquants api."
 license = "MIT"
 readme = "README.org"
 keywords = ["jquants", "api", "finance", "stock", "market"]
-categories = ["API bindings", "Finance" ]
 
 
 
